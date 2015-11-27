@@ -1,5 +1,7 @@
 #include "danylib.hh"
 
+#include <stdint.h>
+
 
 char * danylib_fit(char * data)
 {

@@ -2,6 +2,7 @@
 #define DANYLIB_H
 
 
+#include <stdint.h>
 #include <cstring>
 
 
@@ -20,6 +21,12 @@ char * danylib_fit(char * data);
 
 //puts an array of chars into an array of a set size
 char * danylib_fitToLength(char * data,int length);
+
+//writes a numerical value to an array of characters
+template<typename T> char * danylib_valueToChars(T in);
+
+//turns four characters into a 32 bit integer
+template<typename T> T * danylib_charsToValue(char * chars);
 
 
 #endif

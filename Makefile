@@ -1,5 +1,5 @@
 all:
-	g++ -Wall -c danylib.cc
+	g++ -Wall -c src/*.cc
 	ar rcs libdanylib.a danylib.o
 
 install: all
