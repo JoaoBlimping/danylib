@@ -8,5 +8,5 @@ install: all
 	mkdir -p /usr/local/include/danylib/
 
 	#copy the files over
-	cp  libdanylib.a /usr/local/lib/danylib/libdanylib.a
-	cp danylib.hh /usr/local/include/danylib/danylib.hh
+	cp libdanylib.a /usr/local/lib/danylib/libdanylib.a
+	cp src/danylib.hh /usr/local/include/danylib/danylib.hh
