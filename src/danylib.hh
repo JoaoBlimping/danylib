@@ -20,6 +20,7 @@
 #define DANYLIB_H
 
 
+#include <stdio.h>
 #include <stdint.h>
 #include <cstring>
 

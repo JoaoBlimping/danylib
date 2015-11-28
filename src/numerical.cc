@@ -1,6 +1,7 @@
 #include "danylib.hh"
 
 #include <stdint.h>
+#include <stdio.h>
 
 
 #define BYTE 8
@@ -36,12 +37,12 @@ template<typename T> void danylib_readFromBytes(uint8_t * output,int nItems,FILE
 {
   for (int item = 0;item < nItems;item++)
   {
-
+    T block;
+    fread(&block,sizeof(T),1,input);
+    for (int i = 0;i < sizeof(T);i++)
+    {
+      output[item * sizeof(T) + i] = block & BYTE_MASK;
+      block >> BYTE;
+    }
   }
-}
-
-
-template<typename T> void danylib_writeToBytes(uint8_t * input,int nItems,FILE * output)
-{
-
 }
