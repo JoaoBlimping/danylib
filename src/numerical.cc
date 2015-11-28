@@ -7,7 +7,7 @@
 #define BYTE_MASK 0xFF
 
 
-template<typename T> uint8_t * danylib_valueToChars(T in)
+template<typename T> uint8_t * danylib_valueToBytes(T in)
 {
   uint8_t * out = new uint8_t[sizeof(T)];
 
@@ -20,7 +20,7 @@ template<typename T> uint8_t * danylib_valueToChars(T in)
 }
 
 
-template<typename T> T * danylib_charsToValue(uint8_t * in)
+template<typename T> T * danylib_bytesToValue(uint8_t * in)
 {
   T out = 0;
 
@@ -29,4 +29,19 @@ template<typename T> T * danylib_charsToValue(uint8_t * in)
     out |= in[i] << BYTE * i;
   }
   return out;
+}
+
+
+template<typename T> void danylib_readFromBytes(uint8_t * output,int nItems,FILE * input)
+{
+  for (int item = 0;item < nItems;item++)
+  {
+
+  }
+}
+
+
+template<typename T> void danylib_writeToBytes(uint8_t * input,int nItems,FILE * output)
+{
+
 }
