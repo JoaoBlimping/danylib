@@ -25,6 +25,10 @@
 #include <cstring>
 
 
+#define BYTE 8
+#define BYTE_MASK 0xFF
+
+
 /**
  * comparitor for use on string pointers
  */
@@ -54,27 +58,67 @@ char * danylib_fit(char * data);
  * Copies length characters from data to a new character array of length length.
  * Does not delete the old array.
  */
-char * danylib_fitToLength(char * data,int length);
+template<typename T> T * danylib_fitToLength(T * data,int length)
+{
+  T * fittedData = new T[length];
+  for (int i = 0;i < length;i++)
+  {
+    fittedData[i] = data[i];
+  }
+
+  return fittedData;
+}
 
 /**
  * writes a numerical value to an array of bytes.
  * takes a numerical value of type T, and inserts it into an array of bytes the same
  * size as type T.
  */
-template<typename T> void danylib_valueToBytes(T in,uint8_t * out);
+template<typename T> void danylib_valueToBytes(T in,uint8_t * out)
+{
+  for (int i = 0;i < sizeof(T);i++)
+  {
+    out[i] = in & BYTE_MASK;
+    in = in >> BYTE;
+  }
+}
+
 
 /**
  * turns an array of bytes into a numerical type
  * takes an array of bytes and turns them into a single value of type T.
  * The length of the array and the size of type T must match. TODO: enforce this
  */
-template<typename T> T  danylib_bytesToValue(uint8_t * in);
+template<typename T> T * danylib_bytesToValue(uint8_t * in)
+{
+  T out = 0;
+
+  for (int i = 0;i < sizeof(T);i++)
+  {
+    out |= in[i] << BYTE * i;
+  }
+  return out;
+}
+
 
 /**
  * reads non byte data from a file into an array of bytes.
  * reads any number of items of type T from a file, and places their data into an array
  * of bytes.
  */
-template<typename T> void danylib_readFromBytes(uint8_t * output,int nItems,FILE * input);
+template<typename T> void danylib_readFromBytes(uint8_t * output,int nItems,FILE * input)
+{
+  for (int item = 0;item < nItems;item++)
+  {
+    T block;
+    fread(&block,sizeof(T),1,input);
+    for (int i = 0;i < sizeof(T);i++)
+    {
+      output[item * sizeof(T) + i] = block & BYTE_MASK;
+      block >> BYTE;
+    }
+  }
+}
+
 
 #endif

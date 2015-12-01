@@ -1,7 +1,6 @@
-all: src/string.cc src/numerical.cc
+all: src/string.cc
 	g++ -Wall src/string.cc -c
-	g++ -Wall src/numerical.cc -c
-	ar rcs libdanylib.a numerical.o string.o
+	ar rcs libdanylib.a string.o
 
 install: all
 	#make the directories they go in

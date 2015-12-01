@@ -23,15 +23,3 @@ char * danylib_fit(char * data)
 
   return fittedData;
 }
-
-
-char * danylib_fitToLength(char * data,int length)
-{
-  char * fittedData = new char[length];
-  for (int i = 0;i < length;i++)
-  {
-    fittedData[i] = data[i];
-  }
-
-  return fittedData;
-}
