@@ -8,16 +8,13 @@
 #define BYTE_MASK 0xFF
 
 
-template<typename T> uint8_t * danylib_valueToBytes(T in)
+template<typename T> void danylib_valueToBytes(T in,uint8_t * out)
 {
-  uint8_t * out = new uint8_t[sizeof(T)];
-
   for (int i = 0;i < sizeof(T);i++)
   {
     out[i] = in & BYTE_MASK;
     in >> BYTE;
   }
-  return out;
 }
 
 

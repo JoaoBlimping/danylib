@@ -61,14 +61,14 @@ char * danylib_fitToLength(char * data,int length);
  * takes a numerical value of type T, and inserts it into an array of bytes the same
  * size as type T.
  */
-template<typename T> uint8_t * danylib_valueToBytes(T in);
+template<typename T> void danylib_valueToBytes(T in,uint8_t * out);
 
 /**
  * turns an array of bytes into a numerical type
  * takes an array of bytes and turns them into a single value of type T.
  * The length of the array and the size of type T must match. TODO: enforce this
  */
-template<typename T> T * danylib_bytesToValue(uint8_t * in);
+template<typename T> T  danylib_bytesToValue(uint8_t * in);
 
 /**
  * reads non byte data from a file into an array of bytes.
