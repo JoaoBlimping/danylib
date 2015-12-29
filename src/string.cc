@@ -23,3 +23,11 @@ char * danylib_fit(char * data)
 
   return fittedData;
 }
+
+
+char const * danylib_findNextString(char const * data)
+{
+	while(*data != '\0') data++;
+	data++;
+	return data;
+}
